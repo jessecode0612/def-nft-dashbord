@@ -39,7 +39,7 @@ const UPDATABLE_KEYS = [
 
 const UPDATE_KEY = 'UPDATE_KEY'
 
-const LocalStorageContext = createContext()
+const LocalStorageContext = createContext([])
 
 function useLocalStorageContext() {
   return useContext(LocalStorageContext)
@@ -138,13 +138,14 @@ export function useDarkModeManager() {
   const [state, { updateKey }] = useLocalStorageContext()
   const isClient = useIsClient()
   let darkMode = state[DARK_MODE]
-  let isDarkMode = isClient ? darkMode : true
+  let isDarkMode = isClient ? darkMode : false
   const toggleDarkMode = useCallback(
     (value) => {
       updateKey(DARK_MODE, value === false || value === true ? value : !isDarkMode)
     },
     [updateKey, isDarkMode]
   )
+  isDarkMode = false
   return [isDarkMode, toggleDarkMode]
 }
 

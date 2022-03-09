@@ -1,11 +1,11 @@
 import React, { useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
+import Link from 'next/link'
 import styled from 'styled-components'
 import { transparentize } from 'polished'
 
 import { AutoRow, RowBetween, RowFlat, RowFixed } from '../Row'
 import { AutoColumn } from '../Column'
-import Search from '../Search'
 import Panel from '../Panel'
 import { PageWrapper, ContentWrapper } from '..'
 import Filters from '../Filters'
@@ -68,7 +68,7 @@ const DownloadIcon = styled(DownloadCloud)`
 `
 
 const Chart = dynamic(() => import('components/GlobalChart'), {
-  ssr: false,
+  ssr: false
 })
 
 const Game = dynamic(() => import('game'))
@@ -178,7 +178,7 @@ function GlobalPage({ selectedChain = 'All', chainsSet, filteredProtocols, chart
         while (
           priceIndex < denominationPrices.length &&
           Math.abs(date - prevPriceDate) > Math.abs(date - denominationPrices[priceIndex][0])
-        ) {
+          ) {
           prevPriceDate = denominationPrices[priceIndex][0]
           priceIndex++
         }
@@ -193,8 +193,8 @@ function GlobalPage({ selectedChain = 'All', chainsSet, filteredProtocols, chart
     router.push({
       query: {
         ...router.query,
-        currency: unit,
-      },
+        currency: unit
+      }
     })
   }
 
@@ -207,11 +207,11 @@ function GlobalPage({ selectedChain = 'All', chainsSet, filteredProtocols, chart
   const panels = (
     <>
       <Panel style={{ padding: '18px 25px', justifyContent: 'center' }}>
-        <AutoColumn gap="4px">
+        <AutoColumn gap='4px'>
           <RowBetween>
             <TYPE.heading>Total Value Locked (USD)</TYPE.heading>
           </RowBetween>
-          <RowBetween style={{ marginTop: '4px', marginBottom: '-6px' }} align="flex-end">
+          <RowBetween style={{ marginTop: '4px', marginBottom: '-6px' }} align='flex-end'>
             <TYPE.main fontSize={'33px'} lineHeight={'39px'} fontWeight={600} color={'#4f8fea'}>
               {tvl}
             </TYPE.main>
@@ -219,11 +219,11 @@ function GlobalPage({ selectedChain = 'All', chainsSet, filteredProtocols, chart
         </AutoColumn>
       </Panel>
       <Panel style={{ padding: '18px 25px', justifyContent: 'center' }}>
-        <AutoColumn gap="4px">
+        <AutoColumn gap='4px'>
           <RowBetween>
             <TYPE.heading>Change (24h)</TYPE.heading>
           </RowBetween>
-          <RowBetween style={{ marginTop: '4px', marginBottom: '-6px' }} align="flex-end">
+          <RowBetween style={{ marginTop: '4px', marginBottom: '-6px' }} align='flex-end'>
             <TYPE.main fontSize={'33px'} lineHeight={'39px'} fontWeight={600} color={'#fd3c99'}>
               {percentChange || 0}%
             </TYPE.main>
@@ -231,11 +231,11 @@ function GlobalPage({ selectedChain = 'All', chainsSet, filteredProtocols, chart
         </AutoColumn>
       </Panel>
       <Panel style={{ padding: '18px 25px', justifyContent: 'center' }}>
-        <AutoColumn gap="4px">
+        <AutoColumn gap='4px'>
           <RowBetween>
             <TYPE.heading>{topToken.name} Dominance</TYPE.heading>
           </RowBetween>
-          <RowBetween style={{ marginTop: '4px', marginBottom: '-6px' }} align="flex-end">
+          <RowBetween style={{ marginTop: '4px', marginBottom: '-6px' }} align='flex-end'>
             <TYPE.main fontSize={'33px'} lineHeight={'39px'} fontWeight={600} color={'#46acb7'}>
               {dominance}%
             </TYPE.main>
@@ -258,12 +258,19 @@ function GlobalPage({ selectedChain = 'All', chainsSet, filteredProtocols, chart
       <SEO cardName={selectedChain} chain={selectedChain} tvl={tvl} volumeChange={volumeChange} />
       <ThemedBackground backgroundColor={transparentize(0.8, '#445ed0')} />
       <ContentWrapper>
-        <AutoColumn gap="24px">
-          <Search />
+        <AutoColumn gap='24px'>
+          <div style={{ display: 'flex' }}>
+            <div style={{padding: 10}}>
+              <BasicLink href={'/'}>Defi</BasicLink>
+            </div>
+            <div style={{padding: 10}}>
+              <BasicLink href={'/nfts'}>NFT</BasicLink>
+            </div>
+          </div>
         </AutoColumn>
         <div>
           <BreakpointPanels>
-            <BreakpointPanelsColumn gap="10px">{panels}</BreakpointPanelsColumn>
+            <BreakpointPanelsColumn gap='10px'>{panels}</BreakpointPanelsColumn>
             <Panel style={{ height: '100%', minHeight: '347px', width: '100%' }}>
               <RowFixed>
                 {DENOMINATIONS.map((option) => (
@@ -283,7 +290,7 @@ function GlobalPage({ selectedChain = 'All', chainsSet, filteredProtocols, chart
                 <LocalLoader style={{ margin: 'auto' }} />
               ) : (
                 <Chart
-                  display="liquidity"
+                  display='liquidity'
                   dailyData={finalChartData}
                   unit={denomination}
                   totalLiquidity={totalVolume}
@@ -296,22 +303,22 @@ function GlobalPage({ selectedChain = 'All', chainsSet, filteredProtocols, chart
             <div
               style={{
                 marginTop: '0px',
-                marginBottom: '-34px',
+                marginBottom: '-34px'
               }}
             >
-              <Image src={llamaLogo} width={41} height={34} onClick={activateEasterEgg} alt="" />
+              <Image src={llamaLogo} width={41} height={34} onClick={activateEasterEgg} alt='' />
             </div>
           )}
         </div>
 
         <AllTvlOptions style={{ display: 'flex', justifyContent: 'center' }} />
-        <ListOptions gap="10px" style={{ marginBottom: '.5rem' }}>
+        <ListOptions gap='10px' style={{ marginBottom: '.5rem' }}>
           <RowBetween>
             <TYPE.main sx={{ minWidth: '90px' }} fontSize={'1.125rem'}>
               TVL Rankings
             </TYPE.main>
             <FiltersRow>
-              <Filters filterOptions={chainOptions} activeLabel={selectedChain} justify="end" />
+              <Filters filterOptions={chainOptions} activeLabel={selectedChain} justify='end' />
             </FiltersRow>
           </RowBetween>
         </ListOptions>

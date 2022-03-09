@@ -17,6 +17,7 @@ import { TYPE, ThemedBackground } from '../../Theme'
 import { formattedNum } from '../../utils'
 import { chainCoingeckoIds, chainMarketplaceMappings } from '../../constants/chainTokens'
 import SEO from 'components/SEO'
+import { BasicLink } from '../Link'
 
 const ListOptions = styled(AutoRow)`
   height: 40px;
@@ -178,8 +179,14 @@ const NFTDashboard = ({ statistics, collections, chart, chainData, marketplaceDa
       <ThemedBackground backgroundColor={transparentize(0.8, '#445ed0')} />
       <ContentWrapper>
         <AutoColumn gap="24px" style={{ paddingBottom: '24px' }}>
-          <Search />
-          <CheckMarks type="nfts" />
+          <div style={{ display: 'flex' }}>
+            <div style={{padding: 10}}>
+              <BasicLink href={'/'}>Defi</BasicLink>
+            </div>
+            <div style={{padding: 10}}>
+              <BasicLink href={'/nfts'}>NFT</BasicLink>
+            </div>
+          </div>
         </AutoColumn>
         <BreakpointPanels>
           <BreakpointPanelsColumn gap="10px">{panels}</BreakpointPanelsColumn>

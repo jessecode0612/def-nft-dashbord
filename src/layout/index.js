@@ -15,7 +15,7 @@ export const AppWrapper = styled.div`
 `
 const ContentWrapper = styled.div`
   display: grid;
-  grid-template-columns: ${({ open }) => (open ? '220px 1fr 200px' : '220px 1fr 64px')};
+  //grid-template-columns: ${({ open }) => (open ? '220px 1fr 200px' : '220px 1fr 64px')};
 
   ${({ theme: { maxLg } }) => maxLg} {
     grid-template-columns: 220px 1fr;
@@ -31,6 +31,7 @@ const ContentWrapper = styled.div`
 
 export const Center = styled.div`
   min-height: 100vh;
+  width: 100%;
   height: 100%;
   z-index: 9999;
   transition: width 0.25s ease;
@@ -43,9 +44,9 @@ export const Center = styled.div`
 export const LayoutWrapper = ({ children, savedOpen }) => {
   return (
     <ContentWrapper open={savedOpen}>
-      <SideNav />
+      {/*<SideNav />*/}
       <Center id="center">{children}</Center>
-      <PinnedData />
+      {/*<PinnedData />*/}
     </ContentWrapper>
   )
 }
